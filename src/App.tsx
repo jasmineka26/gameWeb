@@ -1,9 +1,8 @@
-import "./App.css";
-
+import { Button, ButtonGroup } from "@chakra-ui/react";
 function App() {
   return (
     <>
-      <div>111</div>
+      <Button colorScheme="blue">Button</Button>
     </>
   );
 }
