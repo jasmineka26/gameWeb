@@ -1,26 +1,19 @@
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import { Games } from "../hooks/useGames";
+import { Card, CardBody, Divider, Heading, Image } from "@chakra-ui/react";
+import { Game } from "../hooks/useGames";
+import PlarformIconList from "./PlarformIconList";
 
 interface Props {
-  game: Games;
+  game: Game;
 }
 const GameCard = ({ game }: Props) => {
   return (
     <Card borderRadius={10} overflow={"hidden"}>
       <Image src={game.background_image} />
       <CardBody>
-        <Heading fontSize={"2xl"}>{game.name}</Heading>
+        <Heading fontSize={"md"}>{game.name}</Heading>
+        <PlarformIconList
+          platforms={game.parent_platforms.map((p) => p.platform)}
+        />
       </CardBody>
       <Divider />
     </Card>
