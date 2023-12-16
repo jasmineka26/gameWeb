@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
-import { Genre } from "./useGenre";
+import { GameQuery } from "../App";
 
 export interface Platform {
   id: number;
@@ -21,8 +21,7 @@ interface FetchGamesResponse {
   results: Game[];
 }
 const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null,
+  gameQuery: GameQuery,
   requestConfig?: AxiosRequestConfig,
   deps?: any[]
 ) => {
@@ -37,8 +36,8 @@ const useGames = (
       apiClient
         .get<FetchGamesResponse>("/games", {
           params: {
-            genres: selectedGenre?.id,
-            platforms: selectedPlatform?.id,
+            genres: gameQuery.genre?.id,
+            platforms: gameQuery.platform?.id,
           },
           signal: controller.signal,
         })
