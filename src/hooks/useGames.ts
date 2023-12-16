@@ -22,6 +22,7 @@ interface FetchGamesResponse {
 }
 const useGames = (
   selectedGenre: Genre | null,
+  selectedPlatform: Platform | null,
   requestConfig?: AxiosRequestConfig,
   deps?: any[]
 ) => {
@@ -35,7 +36,10 @@ const useGames = (
       setLoading(true);
       apiClient
         .get<FetchGamesResponse>("/games", {
-          params: { genres: selectedGenre?.id },
+          params: {
+            genres: selectedGenre?.id,
+            platforms: selectedPlatform?.id,
+          },
           signal: controller.signal,
         })
         .then((res) => {

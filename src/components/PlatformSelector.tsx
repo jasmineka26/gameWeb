@@ -1,18 +1,34 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import usePlatforms from "../hooks/usePlatforms";
 import { FaAngleDown } from "react-icons/fa";
+import { Platform } from "../hooks/useGames";
 
-const PlatformSelector = () => {
+interface Props {
+  selectedPlatformName?: string;
+  onSelectedPlatform: (platform: Platform) => void;
+}
+
+const PlatformSelector = ({
+  onSelectedPlatform,
+  selectedPlatformName = "All",
+}: Props) => {
   const { platforms, error } = usePlatforms();
   if (error) return null;
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaAngleDown />}>
-        Platforms
+        {selectedPlatformName}
       </MenuButton>
       <MenuList>
         {platforms.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            onClick={() => {
+              onSelectedPlatform(platform);
+            }}
+            key={platform.id}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>
