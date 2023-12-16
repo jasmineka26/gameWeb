@@ -13,7 +13,9 @@ const PlatformSelector = ({
   selectedPlatformName = "All",
 }: Props) => {
   const { platforms, error } = usePlatforms();
+
   if (error) return null;
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaAngleDown />}>
