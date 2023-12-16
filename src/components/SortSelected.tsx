@@ -1,23 +1,38 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FaAngleDown } from "react-icons/fa";
 
-const SortSelected = () => {
-  const orderItems: string[] = [
-    "Relevance",
-    "Date added",
-    "Name",
-    "Release date",
-    "Popularity",
-    "Average rating",
+interface Props {
+  onSelectSortOrder: (sortOrder: string) => void;
+  sortOrder: string;
+}
+
+const SortSelected = ({ onSelectSortOrder, sortOrder }: Props) => {
+  const sortOrders = [
+    { value: "", lable: "Relevance" },
+    { value: "_added", lable: "Date added" },
+    { value: "name", lable: "Name" },
+    { value: "_release", lable: "Release date" },
+    { value: "metacritic", lable: "Popularity" },
+    { value: "_rating", lable: "Average rating" },
   ];
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaAngleDown />}>
-        order by: relevance
+        order by : {currentSortOrder?.lable || " Relevence"}
       </MenuButton>
       <MenuList>
-        {orderItems.map((orderItem, i) => (
-          <MenuItem key={i}>{orderItem}</MenuItem>
+        {sortOrders.map((orderItem) => (
+          <MenuItem
+            key={orderItem.value}
+            onClick={() => onSelectSortOrder(orderItem.value)}
+          >
+            {orderItem.lable}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>
