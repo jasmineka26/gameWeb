@@ -5,9 +5,10 @@ import GenraListSkeleton from "./GenraListSkeleton";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { genres, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   // if (isLoading) return <Spinner />;
@@ -23,7 +24,11 @@ const GenreList = ({ onSelectGenre }: Props) => {
               boxSize="32px"
               borderRadius={8}
             />
-            <Button onClick={() => onSelectGenre(genre)} variant="Link">
+            <Button
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              onClick={() => onSelectGenre(genre)}
+              variant="Link"
+            >
               {genre.name}
             </Button>
           </HStack>
