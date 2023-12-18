@@ -29,7 +29,6 @@ const GameCard = ({ game }: Props) => {
         <Heading fontSize={"xl"}>{game.name}</Heading>
         <Emoji rating={game.rating_top} />
       </CardBody>
-      <Divider />
     </Card>
   );
 };

@@ -40,9 +40,8 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
                 paddingX={"0"}
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight="normal"
-                textColor={genre.id === selectedGenre?.id ? "cyan" : "white"}
-                // fontWeight={genre.id === selectedGenre?.id ? "black" : "normal"}
+                // textColor={genre.id === selectedGenre?.id ? "cyan" : "white"}
+                fontWeight={genre.id === selectedGenre?.id ? "black" : "normal"}
                 onClick={() => onSelectGenre(genre)}
                 variant="link"
               >
