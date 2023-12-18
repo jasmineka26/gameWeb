@@ -18,14 +18,14 @@ const GameCard = ({ game }: Props) => {
   return (
     <Card borderRadius={10} overflow={"hidden"} width="100%">
       <Image src={getCroppedImageUrl(game.background_image)} />
-      <CardBody paddingX={2}>
-        <Heading fontSize={"md"}>{game.name}</Heading>
-        <HStack justifyContent="space-between">
+      <CardBody paddingX={3}>
+        <HStack justifyContent="space-between" marginBottom={2}>
           <PlarformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>
+        <Heading fontSize={"xl"}>{game.name}</Heading>
       </CardBody>
       <Divider />
     </Card>
